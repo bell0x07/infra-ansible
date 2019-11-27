@@ -24,3 +24,17 @@ netplan_configuration:
                 - 9.9.9.9
                 search: []
     version: 2
+
+dhcp_global_domain_name: internal.0x07.pl
+dhcp_global_domain_name_servers:
+  - 1.1.1.1
+  - 9.9.9.9
+dhcp_global_default_lease_time: 28800   # 8hrs
+dhcp_global_max_lease_time: 43200
+
+dhcp_subnets:
+  - ip: 10.40.0.0
+    netmask: 255.255.255.0
+    range_begin: 10.40.0.101
+    range_end: 10.40.0.200
+    routers: 10.40.0.1

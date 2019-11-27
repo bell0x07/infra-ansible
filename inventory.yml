@@ -6,5 +6,10 @@ all:
         test1:
           ansible_host: test1.internal.0x07.pl
           ansible_port: 60022
+    routers:
+      hosts:
+        odin:
+          ansible_host: odin.0x07.pl
+          ansible_port: 22
   vars:
     ansible_python_interpreter: /usr/bin/python3
