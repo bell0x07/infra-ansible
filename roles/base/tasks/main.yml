@@ -1,0 +1,15 @@
+- name: Set hostname
+  hostname:
+    name: "{{inventory_hostname}}"
+
+- name: Install all the usual stuff
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ packages }}"
+
+- name: Install open-vm-tools
+  become: yes
+  package:
+    name: open-vm-tools
+    state: present

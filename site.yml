@@ -1,0 +1,24 @@
+- name: Install all the usual stuff
+  hosts: all
+  gather_facts: yes
+  become: yes
+  roles:
+    - base
+
+- name: Configure SSHd
+  hosts: all
+  become: yes
+  roles:
+    - sshd
+
+- name: Setup netdata
+  hosts: all
+  become: yes
+  roles:
+    - netdata
+
+- name: Configure iptables
+  hosts: all
+  become: yes
+  roles:
+    - iptables

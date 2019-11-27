@@ -1,0 +1,16 @@
+---
+
+packages:
+  - htop
+  - screen
+  - mc
+  - bash
+  - bash-completion
+  - logrotate
+  - sudo
+  - zsh
+  - git
+  - mosh
+  - vim
+  - nano
+  - net-tools

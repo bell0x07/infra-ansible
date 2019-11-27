@@ -1,0 +1,20 @@
+- name: Disallow password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PasswordAuthentication"
+    line: "PasswordAuthentication no"
+  notify: restart sshd
+
+- name: Disallow root login
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "^PermitRootLogin"
+    line: "PermitRootLogin no"
+  notify: restart sshd
+
+- name: Set sshd port to 60022
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: "Port"
+    line: "Port 60022"
+  notify: restart sshd
