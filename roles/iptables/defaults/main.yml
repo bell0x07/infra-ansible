@@ -9,7 +9,7 @@ iptables_reject: true
 # open ports incoming
 iptables_rules_in:
   - protocol: tcp
-    dport: 22
+    dport: 60022
 
 # opening ports for ospf
 iptables_rules_in_ospf: []
