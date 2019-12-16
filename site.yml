@@ -17,8 +17,13 @@
   roles:
     - netdata
 
+- name: Setup dhcp server
+  hosts: routers
+  become: yes
+  roles:
+    - dhcp
 - name: Configure iptables
-  hosts: all
+  hosts: routers
   become: yes
   roles:
     - iptables
