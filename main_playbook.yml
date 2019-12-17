@@ -22,3 +22,9 @@
   become: yes
   roles:
     - dhcp
+
+- name: Setum iptables with ferm
+  hosts: routers
+  become: yes
+  roles:
+    - ferm
