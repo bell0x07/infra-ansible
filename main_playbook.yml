@@ -23,7 +23,7 @@
   roles:
     - dhcp
 
-- name: Setum iptables with ferm
+- name: Setup iptables with ferm
   hosts: routers
   become: yes
   roles:
