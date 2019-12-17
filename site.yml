@@ -22,8 +22,3 @@
   become: yes
   roles:
     - dhcp
-- name: Configure iptables
-  hosts: routers
-  become: yes
-  roles:
-    - iptables
