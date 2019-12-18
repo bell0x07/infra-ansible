@@ -1,8 +1,13 @@
 ---
 
-- name: Restart ferm
-  service:
-    name: 'ferm'
-    state: 'restarted'
-  when: ferm__enabled | bool
+# Handlers main file for ferm role
 
+- name: 'HANDLER | Restart ferm'
+  become: True
+  service:
+    name: "{{ ferm_service_name }}"
+    state: 'restarted'
+  tags:
+    - 'role::ferm'
+    - 'role::ferm::config'
+    - 'role::ferm::install'
