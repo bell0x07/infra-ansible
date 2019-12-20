@@ -1,3 +1,7 @@
+
+
+### netplan configuration
+
 netplan_configuration:
   network:
     ethernets:
@@ -25,6 +29,8 @@ netplan_configuration:
                 search: []
     version: 2
 
+### DHCPd configuration
+
 dhcp_global_domain_name: internal.0x07.pl
 dhcp_global_domain_name_servers:
   - 1.1.1.1
@@ -38,3 +44,5 @@ dhcp_subnets:
     range_begin: 10.40.0.101
     range_end: 10.40.0.200
     routers: 10.40.0.1
+
+### FERM configuration
