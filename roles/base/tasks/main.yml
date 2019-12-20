@@ -19,3 +19,11 @@
   package:
     name: open-vm-tools
     state: present
+
+- name: disable sudo password
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
