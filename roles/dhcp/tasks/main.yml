@@ -43,6 +43,13 @@
     mode: 0755
   tags: dhcp
 
+- name: Specify listening interface
+  lineinfile:
+    path: /etc/default/isc-dhcp-server
+    state: present
+    regexp: '^INTERFACESv4'
+    line: INTERFACESv4="ens160"
+
 - name: Install config file
   template:
     src: etc_dhcp_dhcpd.conf.j2
