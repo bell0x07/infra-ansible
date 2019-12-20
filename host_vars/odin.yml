@@ -46,3 +46,79 @@ dhcp_subnets:
     routers: 10.40.0.1
 
 ### FERM configuration
+
+ferm_packages:
+  - name: 'iptables'
+  - name: 'ferm'
+
+# Service management
+ferm_service_name: 'ferm'
+
+# Configuration
+ferm_variables: |
+  @def $DEV_PRIVATE = ens160;
+  @def $DEV_WORLD = ens192;
+  @def $NET_PRIVATE = 10.40.0.1/24;
+
+
+  # our static IP address
+  @def $HOST_STATIC = 51.91.33.40;
+
+ferm_functions: |
+  # convenience function which creates both the nat/DNAT and the filter/FORWARD
+  # rule
+  @def &FORWARD_TCP($proto, $port, $dest) = {
+    table filter chain FORWARD interface $DEV_WORLD outerface $DEV_DMZ daddr $dest proto $proto dport $port ACCEPT;
+    table nat chain PREROUTING interface $DEV_WORLD daddr $HOST_STATIC proto $proto dport $port DNAT to $dest;
+  }
+ferm_rules: |
+  table filter {
+    chain INPUT {
+      policy DROP;
+        # connection tracking
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+        # allow local connections
+        interface lo ACCEPT;
+        # respond to ping
+        proto icmp icmp-type echo-request ACCEPT;
+        # for netdata
+        interface $DEV_WORLD {
+            proto tcp dport 19999 ACCEPT;
+        }
+        # for cockpit
+        interface $DEV_WORLD {
+            proto tcp dport 9090 ACCEPT;
+        }
+        # allow SSH connections on our port
+        interface $DEV_WORLD {
+            proto tcp dport 60022 ACCEPT;
+        }
+        # the rest is dropped by the above policy (except additional
+        # FORWARD rules added by the function &FORWARD_TCP)
+    }
+    chain OUTPUT {
+      policy ACCEPT;
+      # connection tracking
+      mod state state INVALID DROP;
+      mod state state (ESTABLISHED RELATED) ACCEPT;
+    }
+    chain FORWARD {
+      policy DROP;
+        # connection tracking
+        mod state state INVALID DROP;
+        mod state state (ESTABLISHED RELATED) ACCEPT;
+        # the internal net may go everywhere
+        interface $DEV_PRIVATE ACCEPT;
+        # the DMZ may only access the internet
+        # the rest is dropped by the above policy
+    }
+
+  }
+  table nat {
+    chain POSTROUTING {
+        # masquerade private IP addresses
+        saddr ($NET_PRIVATE) outerface $DEV_WORLD SNAT to $HOST_STATIC;
+    }
+  }
+
