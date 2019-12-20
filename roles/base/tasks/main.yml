@@ -9,10 +9,10 @@
     enabled: no
 
 - name: Install all the usual stuff
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items: "{{ packages }}"
+  apt:
+    name: "{{ packages }}"
+    state: latest
+    update_cache: yes
 
 - name: Install open-vm-tools
   become: yes
