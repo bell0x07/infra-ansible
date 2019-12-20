@@ -1,0 +1,17 @@
+---
+#cockpit
+- name: Install cockpit
+  apt:
+    name: 
+      - cockpit
+      - cockpit-system
+      - cockpit-docker
+      - cockpit-packagekit
+      - cockpit-dashboard
+      - cockpit-storaged
+      - cockpit-doc
+      - cockpit-ws
+    state: latest
+  notify:
+    - restart cockpit
+

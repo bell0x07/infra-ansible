@@ -23,6 +23,12 @@
   roles:
     - netdata
 
+- name: Setup cockpit
+  hosts: all
+  become: yes
+  roles:
+    - cockpit
+
 - name: Setup dhcp server
   hosts: routers
   become: yes
