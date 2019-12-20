@@ -11,6 +11,12 @@
   roles:
     - sshd
 
+- name: Configure network with netplan
+  hosts: routers
+  become: yes
+  roles:
+    - netplan
+
 - name: Setup netdata
   hosts: all
   become: yes
