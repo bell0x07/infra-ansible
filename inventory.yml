@@ -10,6 +10,6 @@ all:
       hosts:
         odin:
           ansible_host: odin.0x07.pl
-          ansible_port: 22
+          ansible_port: 60022
   vars:
     ansible_python_interpreter: /usr/bin/python3
