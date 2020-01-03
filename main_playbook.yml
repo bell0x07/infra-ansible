@@ -12,9 +12,7 @@
     - sshd
 
 - name: Configure network with netplan
-  hosts: 
-    - routers
-    - vpn_servers
+  hosts: routers
   become: yes
   roles:
     - netplan
@@ -42,9 +40,3 @@
   become: yes
   roles:
     - ferm
-
-- name: install pritunl
-  hosts: vpn_servers
-  become: yes
-  roles:
-    - pritunl
