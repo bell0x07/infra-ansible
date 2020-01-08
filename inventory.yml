@@ -14,5 +14,9 @@ all:
       hosts:
         vpn:
           ansible_host: vpn.internal.0x07.pl
+    other:
+      hosts:
+        gitlab:
+          ansible_host: gitlab.internal.0x07.pl
   vars:
     ansible_python_interpreter: /usr/bin/python3
