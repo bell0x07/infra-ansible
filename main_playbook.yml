@@ -48,3 +48,9 @@
   become: yes
   roles:
     - pritunl
+
+- name: install gitlab
+  hosts: gitlab
+  become: yes
+  roles:
+    - gitlab
