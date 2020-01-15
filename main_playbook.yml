@@ -15,6 +15,7 @@
   hosts: 
     - routers
     - vpn_servers
+    - haproxy
   become: yes
   roles:
     - netplan
