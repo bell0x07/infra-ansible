@@ -1,0 +1,11 @@
+---
+# tasks file for roles/haproxy
+
+- name: install haproxy
+  apt:
+    name:
+      - haproxy
+    state: latest
+    update_cache: yes
+  notify: 
+    - restart haproxy

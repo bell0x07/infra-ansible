@@ -54,3 +54,9 @@
   become: yes
   roles:
     - gitlab
+
+- name: install haproxy
+  hosts: haproxy
+  become: yes
+  roles:
+    - haproxy

@@ -1,0 +1,26 @@
+
+
+### netplan configuration
+
+netplan_configuration:
+  network:
+    ethernets:
+        ens192:
+            dhcp4: no
+            dhcp6: no
+            addresses:
+            - 51.91.33.46/32
+            gateway4: 51.91.33.254
+            nameservers:
+                addresses:
+                - 1.1.1.1
+            routes:
+            - to: 51.91.33.254/32
+              via: 0.0.0.0
+              scope: link
+        ens160:
+            addresses:
+            dhcp4: yes
+            nameservers:
+    version: 2
+

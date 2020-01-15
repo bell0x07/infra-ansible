@@ -18,5 +18,8 @@ all:
       hosts:
         gitlab:
           ansible_host: gitlab.internal.0x07.pl
+        haproxy:
+          ansible_host: haproxy.internal.0x07.pl
+          ansible_port: 22
   vars:
     ansible_python_interpreter: /usr/bin/python3
