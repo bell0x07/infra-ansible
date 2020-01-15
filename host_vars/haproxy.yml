@@ -20,6 +20,5 @@ netplan_configuration:
               scope: link
         ens160:
             dhcp4: yes
-            nameservers:
     version: 2
 
