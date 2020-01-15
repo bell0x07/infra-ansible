@@ -2,4 +2,4 @@
 - name: Install Gitlab CE
   package:
     name: "{{ gitlab_package }}"
-    state: present
+    state: latest
