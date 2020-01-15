@@ -14,5 +14,37 @@ packages:
   - vim
   - nano
   - net-tools
+  - curl
+  - dnsutils
+  - ethtool
+  - fdupes
+  - fping
+  - htop
+  - iperf3
+  - iproute2
+  - iptraf-ng
+  - inotify-tools
+  - less
+  - lsof
+  - man
+  - mc
+  - mlocate
+  - mtr-tiny
   - ncdu
-  
+  - nmap
+  - net-tools
+  - netcat-openbsd
+  - nvme-cli
+  - pciutils
+  - pv
+  - psmisc
+  - rsync
+  - screen
+  - smartmontools
+  - speedtest-cli
+  - tcpdump
+  - usbutils
+  - util-linux  # fstrim and stuff
+  - whois
+  - unzip
+  - python3-pip
