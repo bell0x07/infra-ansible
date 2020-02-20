@@ -35,4 +35,3 @@
   notify: 
     - restart pritunl
     - restart mongodb
-    - wait for VPN clients
