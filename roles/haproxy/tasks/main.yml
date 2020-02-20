@@ -6,6 +6,17 @@
     name:
       - haproxy
     state: latest
-    update_cache: yes
+    update_cache: no
   notify: 
+    - restart haproxy
+
+- name: Put config file in the right place
+  copy:
+    src: roles/haproxy/files/haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  notify:
     - restart haproxy

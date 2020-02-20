@@ -20,5 +20,11 @@ all:
           ansible_host: gitlab.internal.0x07.pl
         haproxy:
           ansible_host: haproxy.internal.0x07.pl
+        sextoysdatabase:
+          ansible_host: sextoysdatabase.internal.0x07.pl
+        storage:
+          ansible_host: storage.internal.0x07.pl
+        media:
+          ansible_host: media.internal.0x07.pl
   vars:
     ansible_python_interpreter: /usr/bin/python3
