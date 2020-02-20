@@ -14,3 +14,7 @@
     state: restarted
     enabled: yes
   listen: "restart pritunl"
+
+- name: wait for VPN clients
+  pause:
+    minutes: 1
