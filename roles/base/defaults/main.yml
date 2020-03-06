@@ -48,3 +48,4 @@ packages:
   - whois
   - unzip
   - python3-pip
+  - lnav
