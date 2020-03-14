@@ -45,6 +45,53 @@ dhcp_subnets:
     range_end: 10.40.0.200
     routers: 10.40.0.1
 
+dhcp_hosts:
+  - name: vpn
+    mac: '00:0c:29:6a:9d:c6'
+    ip: 10.40.0.104
+  - name: gitlab
+    mac: '00:0c:29:08:3e:d6'
+    ip: 10.40.0.105
+  - name: haproxy
+    mac: '00:0c:29:70:06:09'
+    ip: 10.40.0.110
+  - name: sextoysdatabase
+    mac: '00:0c:29:9f:6f:1a'
+    ip: 10.40.0.107
+  - name: storage
+    mac: '00:0c:29:64:a3:33'
+    ip: 10.40.0.113
+  - name: media
+    mac: '00:0c:29:2b:6e:88'
+    ip: 10.40.0.112
+  - name: tmp
+    mac: '00:0c:29:d2:23:64'
+    ip: 10.40.0.114
+
+consul_service_status: "started"
+consul_configs:
+  main:
+    bind_addr: 51.91.33.40
+    client_addr: 0.0.0.0
+    node_name: "{{ ansible_hostname }}"
+    data_dir: "{{ consul_data_dir }}"
+    datacenter: "valhalla"
+    enable_syslog: true
+    server: true
+    ui: true
+    enable_script_checks: true
+    rejoin_after_leave: true
+    retry_join: "{{ groups['server'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | list }}"
+    ports:
+      dns: 53
+    dns_config:
+      udp_answer_limit: 64
+    bootstrap_expect: "{{ groups['server'] | length | int }}"
+    recursors:
+      - 1.1.1.1
+      - 8.8.8.8
+
+
 ### FERM configuration
 
 ferm_packages:
@@ -71,6 +118,7 @@ ferm_functions: |
     table filter chain FORWARD interface $DEV_WORLD outerface $DEV_DMZ daddr $dest proto $proto dport $port ACCEPT;
     table nat chain PREROUTING interface $DEV_WORLD daddr $HOST_STATIC proto $proto dport $port DNAT to $dest;
   }
+
 ferm_rules: |
   table filter {
     chain INPUT {
@@ -121,4 +169,5 @@ ferm_rules: |
         saddr ($NET_PRIVATE) outerface $DEV_WORLD SNAT to $HOST_STATIC;
     }
   }
+
 

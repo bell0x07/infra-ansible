@@ -15,7 +15,7 @@
   hosts: 
     - routers
     - vpn_servers
-    - haproxy
+    - haproxy.internal.0x07.pl
   become: yes
   roles:
     - netplan
@@ -44,11 +44,15 @@
   roles:
     - ferm
 
-- name: setup consul
-  hosts: all
+- name: install and setup consul
+  hosts: 
+    - odin
+    - vpn
   become: yes
   roles:
-    - consul
+    - role: consul
+      configure: true
+      install: true
 
 - name: install pritunl
   hosts: vpn_servers
@@ -57,7 +61,7 @@
     - pritunl
 
 - name: install gitlab
-  hosts: gitlab
+  hosts: gitlab.internal.0x07.pl
   become: yes
   roles:
     - gitlab

@@ -1,0 +1,38 @@
+
+
+### netplan configuration
+
+netplan_configuration:
+  network:
+    ethernets:
+        ens160:
+            dhcp4: no
+            dhcp6: no
+            addresses:
+            - 51.91.33.47/32
+            gateway4: 51.91.33.254
+            nameservers:
+                addresses:
+                - 1.1.1.1
+            routes:
+            - to: 51.91.33.254/32
+              via: 0.0.0.0
+              scope: link
+        ens192:
+            dhcp4: yes
+    version: 2
+
+consul_service_status: "started"
+consul_configs:
+  main:
+    bind_addr: "{{ ansible_default_ipv4['address'] }}"
+    client_addr: 0.0.0.0
+    node_name: "{{ ansible_hostname }}"
+    data_dir: "{{ consul_data_dir }}"
+    datacenter: "valhalla"
+    enable_syslog: true
+    server: false
+    ui: true
+    enable_script_checks: true
+    rejoin_after_leave: true
+    retry_join: "{{ groups['server'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | list }}"

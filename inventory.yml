@@ -1,32 +1,32 @@
 ---
 all:
   children:
-    test:
-      hosts:
-        test1:
-          ansible_host: test1.internal.0x07.pl
     routers:
       hosts:
-        odin:
+        odin.0x07.pl:
           ansible_host: odin.0x07.pl
           ansible_port: 60022
     vpn_servers:
       hosts:
-        vpn:
-          ansible_host: vpn.internal.0x07.pl
+        vpn.0x07.pl:
+          ansible_host: vpn.0x07.pl
+          ansible_port: 60022
     other:
       hosts:
-        gitlab:
+        gitlab.internal.0x07.pl:
           ansible_host: gitlab.internal.0x07.pl
-        haproxy:
+        haproxy.internal.0x07.pl:
           ansible_host: haproxy.internal.0x07.pl
-        sextoysdatabase:
+        sextoysdatabase.internal.0x07.pl:
           ansible_host: sextoysdatabase.internal.0x07.pl
-        storage:
+        storage.internal.0x07.pl:
           ansible_host: storage.internal.0x07.pl
           ansible_port: 60022
-        media:
+        media.internal.0x07.pl:
           ansible_host: media.internal.0x07.pl
+          ansible_port: 60022
+        tmp.internal.0x07.pl:
+          ansible_host: tmp.internal.0x07.pl
           ansible_port: 60022
   vars:
     ansible_python_interpreter: /usr/bin/python3
