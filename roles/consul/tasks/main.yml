@@ -1,8 +1,24 @@
 ---
-# tasks file for roles/consul
+- import_tasks: prerequisite.yml
+  when:
+    install
 
-- name: Install consul
-  apt:
+- import_tasks: install.yml
+  when:
+    install
+
+- import_tasks: server.yml
+  when:
+    consul_configs.main.server
+
+- include: config.yml
+  with_dict: "{{  consul_configs  }}"
+  when:
+    - configure
+  tags: config
+
+- name: Ensure the Consul service is "{{ consul_service_status }}"
+  service:
     name: consul
-    state: present
-    update_cache: yes
+    state: "{{ consul_service_status }}"
+  when: not consul_packer_provision
