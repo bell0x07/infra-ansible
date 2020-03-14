@@ -1,0 +1,9 @@
+---
+# tasks file for roles/consul
+
+- name: Install consul
+  apt:
+    name: consul
+    state: absent
+    purge: yes
+    update_cache: yes
