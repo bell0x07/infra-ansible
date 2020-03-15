@@ -11,6 +11,11 @@ all:
         vpn.0x07.pl:
           ansible_host: vpn.0x07.pl
           ansible_port: 60022
+    games:
+      hosts:
+        tekkit.0x07.pl:
+          ansible_host: 10.40.0.102
+          ansible_port: 22
     other:
       hosts:
         gitlab.internal.0x07.pl:
