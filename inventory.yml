@@ -38,5 +38,8 @@ all:
         tmp.internal.0x07.pl:
           ansible_host: tmp.internal.0x07.pl
           ansible_port: 60022
+        mily.internal.0x07.pl:
+          ansible_host: mily.internal.0x07.pl
+          ansible_port: 60022
   vars:
     ansible_python_interpreter: /usr/bin/python3

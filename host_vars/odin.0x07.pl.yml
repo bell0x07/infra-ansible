@@ -70,6 +70,9 @@ dhcp_hosts:
   - name: tekkit
     mac: '00:0c:29:b4:c3:45'
     ip: 10.40.0.102
+  - name: mily.internal.0x07.pl
+    mac: '00:0c:29:d0:4b:b7'
+    ip: 10.40.0.103
 
 consul_service_status: "started"
 consul_configs:
@@ -170,6 +173,15 @@ ferm_rules: |
     chain POSTROUTING {
         # masquerade private IP addresses
         saddr ($NET_PRIVATE) outerface $DEV_WORLD SNAT to $HOST_STATIC;
+    }
+    chain PREROUTING {
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 8180 DNAT to 10.40.0.103:80;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62137 DNAT to 10.40.0.103:62137;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62138 DNAT to 10.40.0.103:62138;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62139 DNAT to 10.40.0.103:62139;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62140 DNAT to 10.40.0.103:62140;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62141 DNAT to 10.40.0.103:62141;
+        interface ens192 daddr 51.91.33.46/32 proto tcp dport 62142 DNAT to 10.40.0.103:62142;
     }
   }
 
