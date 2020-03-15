@@ -67,6 +67,9 @@ dhcp_hosts:
   - name: tmp
     mac: '00:0c:29:d2:23:64'
     ip: 10.40.0.114
+  - name: tekkit
+    mac: '00:0c:29:b4:c3:45'
+    ip: 10.40.0.102
 
 consul_service_status: "started"
 consul_configs:
