@@ -39,7 +39,8 @@
     - dhcp
 
 - name: Setup iptables with ferm
-  hosts: routers
+  hosts: 
+    - routers
   become: yes
   roles:
     - ferm
