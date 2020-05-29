@@ -29,6 +29,9 @@ all:
         minecraft.ibmcloud.0x07.pl:
           anisble_host: minecraft.ibmcloud.0x07.pl
           ansible_port: 60022
+        teaching.ibmcloud.0x07.pl:
+          anisble_host: teaching.ibmcloud.0x07.pl
+          ansible_port: 60022
     other:
       hosts:
         gitlab.internal.0x07.pl:
@@ -47,7 +50,12 @@ all:
           ansible_host: tmp.internal.0x07.pl
           ansible_port: 60022
         mily.internal.0x07.pl:
-          ansible_host: mily.internal.0x07.pl
+          ansible_host: 10.40.0.103
+          ansible_port: 60022
+    yggdrasil:
+      hosts:
+        nidavellir.yggdrasil.0x07.pl:
+          ansible_host: 10.0.42.61
           ansible_port: 60022
   vars:
     ansible_python_interpreter: /usr/bin/python3
