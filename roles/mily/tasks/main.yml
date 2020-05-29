@@ -1,0 +1,19 @@
+---
+# tasks file for mily
+
+- name: create user for mily
+  user:
+      name: mily # required. Name of the user to create, remove or modify.
+      create_home: yes # not required. Unless set to C(no), a home directory will be made for the user when the account is created or if the home directory does not exist.,Changed from C(createhome) to C(create_home) in version 2.5.
+      groups: sudo, docker # not required. List of groups user will be added to. When set to an empty string C(''), C(null), or C(~), the user is removed from all groups except the primary group. (C(~) means C(null) in YAML),Before version 2.3, the only input format allowed was a comma separated string. Now this parameter accepts a list as well as a comma separated string.      move_home: no # not required. If set to C(yes) when used with C(home=), attempt to move the user's old home directory to the specified directory if it isn't there already and the old home exists.
+      password: makkapakka123! # not required. Optionally set the user's password to this crypted value.,On macOS systems, this value has to be cleartext. Beware of security issues.,See U(https://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) for details on various ways to generate these password values.
+      state: present # not required. choices: absent;present. Whether the account should exist or not, taking action if the state is different from what is stated.
+      update_password: on_create
+
+- name: add key for mily
+  authorized_key:
+    user: mily
+    key: https://github.com/firebite.keys
+    manage_dir: yes
+    state: present
+  

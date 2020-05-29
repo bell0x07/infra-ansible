@@ -66,3 +66,9 @@
   become: yes
   roles:
     - gitlab
+
+- name: configure user for mily
+  hosts: mily.internal.0x07.pl
+  become: yes
+  roles:
+    - mily
