@@ -1,3 +1,11 @@
+- name: disable sudo password
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
 - name: Disallow password authentication
   lineinfile:
     path: /etc/ssh/sshd_config

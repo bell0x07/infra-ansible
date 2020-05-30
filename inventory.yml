@@ -52,8 +52,8 @@ all:
           ansible_port: 60022
     yggdrasil:
       hosts:
-        nidavellir.yggdrasil.0x07.pl:
+        snotra.yggdrasil.0x07.pl:
           ansible_host: 10.0.42.61
-          ansible_port: 60022
+          ansible_port: 22
   vars:
     ansible_python_interpreter: /usr/bin/python3
