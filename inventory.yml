@@ -11,25 +11,11 @@ all:
         vpn.0x07.pl:
           ansible_host: vpn.0x07.pl
           ansible_port: 60022
-    games:
-      hosts:
-        tekkit.0x07.pl:
-          ansible_host: 10.40.0.102
-          ansible_port: 60022
-    vultr:
-      hosts:
-        tekkit.vultr.0x07.pl:
-          ansible_host: tekkit.vultr.0x07.pl
-          ansible_port: 60022
     ibmcloud:
       hosts:
         tekkit.ibmcloud.0x07.pl:
           ansible_host: tekkit.ibmcloud.0x07.pl
           ansible_port: 60022
-        minecraft.ibmcloud.0x07.pl:
-          anisble_host: 37.58.123.100
-          ansible_port: 22
-          ansible_user: root
     other:
       hosts:
         gitlab.internal.0x07.pl:

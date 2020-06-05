@@ -23,13 +23,21 @@
     name: isc-dhcp-server6
     state: stopped
     enabled: no
-  when: "'odin' in inventory_hostname"
+  when: "'odin.0x07.pl' in inventory_hostname"
 
 - name: Install all the usual stuff
   apt:
     name: "{{ packages }}"
     state: latest
     update_cache: yes
+
+- name: Ensure current ssh keys are present
+  get_url:
+    url: https://github.com/bell0x07.keys
+    dest: /home/bell/.ssh/authorized_keys
+    mode: '0600'
+    owner: bell
+    group: bell
 
 - name: Install open-vm-tools
   become: yes

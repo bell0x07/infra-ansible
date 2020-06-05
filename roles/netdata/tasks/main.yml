@@ -15,6 +15,20 @@
 - name: Configure netdata to be available from anywhere
   lineinfile:
     path: /etc/netdata/netdata.conf
-    regexp: "^bind socket to IP"
-    line: "bind socket to IP = 0.0.0.0"
+    regexp: "(        bind socket to IP)"
+    line: "        bind socket to IP = 0.0.0.0"
+  notify: restart netdata
+
+- name: configure telegram bot
+  lineinfile:
+    path: /etc/netdata/health_alarm_notify.conf
+    regexp: '(TELEGRAM_BOT_TOKEN=)'
+    line: 'TELEGRAM_BOT_TOKEN="1080526666:AAHbiDjp_GvlyonQTU4k7ONptm9F_WwN-PA"'
+  notify: restart netdata
+
+- name: configure telegram recipients
+  lineinfile:
+    path: /etc/netdata/health_alarm_notify.conf
+    regexp: '(DEFAULT_RECIPIENT_TELEGRAM=)'
+    line: 'DEFAULT_RECIPIENT_TELEGRAM="144654935"'
   notify: restart netdata

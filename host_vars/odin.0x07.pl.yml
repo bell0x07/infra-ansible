@@ -160,7 +160,7 @@ ferm_rules: |
     chain FORWARD {
       policy DROP;
         # connection tracking
-        mod state state NEW ALLOW;
+        mod state state NEW ACCEPT;
         mod state state INVALID DROP;
         mod state state (ESTABLISHED RELATED) ACCEPT;
         # the internal net may go everywhere
