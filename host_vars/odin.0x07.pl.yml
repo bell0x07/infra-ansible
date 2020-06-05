@@ -130,6 +130,7 @@ ferm_rules: |
     chain INPUT {
       policy DROP;
         # connection tracking
+        mod state state NEW ACCEPT;
         mod state state INVALID DROP;
         mod state state (ESTABLISHED RELATED) ACCEPT;
         # allow local connections
